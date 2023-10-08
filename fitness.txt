@@ -1,0 +1,14 @@
+Website: https://rapidapi.com/apininjas/api/exercises-by-api-ninjas
+----------CODE--------
+import requests
+
+url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises"
+
+headers = {
+	"X-RapidAPI-Key": "05fa6f04eamsh4d82ced5e1ad334p14cf70jsnb2e9c8d2af97",
+	"X-RapidAPI-Host": "exercises-by-api-ninjas.p.rapidapi.com"
+}
+
+response = requests.get(url, headers=headers)
+
+print(response.json())
