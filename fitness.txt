@@ -1,7 +1,16 @@
 ----------------------Helpful Website---------------------
-API: https://rapidapi.com/apininjas/api/exercises-by-api-ninjas
+API:                     https://rapidapi.com/apininjas/api/exercises-by-api-ninjas
+
 Help to code with API's: https://www.askpython.com/python/examples/pull-data-from-an-api
                          https://www.askpython.com/python/examples/connect-and-call-apis
+
+
+Maybe API's:             https://rapidapi.com/search/food
+                         https://rapidapi.com/apininjas/api/calories-burned-by-api-ninjas/
+                         https://rapidapi.com/qstruthers-LX6HXgTC7Po/api/customized-meal-planner/pricing
+                         https://rapidapi.com/spoonacular/api/recipe-food-nutrition/
+                         https://suggestic.com/blog/the-5-top-weight-loss-apis-that-will-surprise-you
+ 
 -------------------------CODE----------------------------
 Python (Requests)
 RapidAPI App: default-application_8281839
