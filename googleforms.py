@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os.path
+import json
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -15,19 +16,20 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 # SPREADSHEET_ID: Obtained with the last string of characters in the URL of the spreadsheet that's created
 # SAMPLE_RANGE_NAME: Is the range inside that row of inputs
 SPREADSHEET_ID = '1FxU51lyWODR-tx4Nn4lWnqPEVSyWNamOStpn4_kd6Fo' 
-SAMPLE_RANGE_NAME = 'B2:I3'
-
+SAMPLE_RANGE_NAME = 'B:J'
 
 def main():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """
     creds = None
+    
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+        
     # If there are no (valid) credentials available, let the user log in.
     # Login to google to fill out form
     if not creds or not creds.valid:
@@ -50,27 +52,24 @@ def main():
                                     range=SAMPLE_RANGE_NAME).execute()
         values = result.get('values', [])
         
+        # If there are no responses in the Google Sheets
         if not values:
             print('No data found.')
             return
         
         email = input("What was the email used to fill out the form? ")
         
-        # # creates a mxn array to store this information (values x row)
-        index = 0
-
-        for subRow in values:
-            for row in subRow:
-                if row == email:
-                    # Print columns B and I, which correspond to indices 0 and 7.
-                    print('%s %s, %s, %s, %s, %s, %s, %s' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])) 
-                    print('%s' % (values[index]));
-                else: 
-                    index += 1
+        # creates a mxn array to store this information (values x row)
+        for row in values: 
+            if row[0] == email:
+                tempRow = row
                 
+        # Store the user's input into a dictionary for the Fitness API to read 
+        user_dict = {"email": tempRow[0], "name": tempRow[1], "sex": tempRow[2], "age": tempRow[3], "weight": tempRow[4], "height": tempRow[5], "goal": tempRow[6], "strength": tempRow[7], "muscles": tempRow[8]}
+        print(user_dict)
+    
     except HttpError as err:
         print(err)
-
-
+        
 if __name__ == '__main__':
     main()
