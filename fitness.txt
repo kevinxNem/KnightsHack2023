@@ -1,5 +1,13 @@
-Website: https://rapidapi.com/apininjas/api/exercises-by-api-ninjas
-----------CODE--------
+----------------------Helpful Website---------------------
+API: https://rapidapi.com/apininjas/api/exercises-by-api-ninjas
+Help to code with API's: https://www.askpython.com/python/examples/pull-data-from-an-api
+                         https://www.askpython.com/python/examples/connect-and-call-apis
+-------------------------CODE----------------------------
+Python (Requests)
+RapidAPI App: default-application_8281839
+Request URL: rapidapi.com
+X-RapidAPI-Key: 05fa6f04eamsh4d82ced5e1ad33p14cf70jsnb2e9c8d2af97
+X-RapidAPI-Host: exercises-by-api-ninjas.p.rapidapi.com
 import requests
 
 url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises"
