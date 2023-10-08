@@ -14,7 +14,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 # The ID and range of the output spreadsheet.
 # SPREADSHEET_ID: Obtained with the last string of characters in the URL of the spreadsheet that's created
 # SAMPLE_RANGE_NAME: Is the range inside that row of inputs
-SPREADSHEET_ID = '1Epr4oSMp_CSgYd8z2HWf5DAIjRMlFizF3cgWV8Tfbdo' 
+SPREADSHEET_ID = '1FxU51lyWODR-tx4Nn4lWnqPEVSyWNamOStpn4_kd6Fo' 
 SAMPLE_RANGE_NAME = 'B2:I3'
 
 
@@ -56,13 +56,17 @@ def main():
         
         email = input("What was the email used to fill out the form? ")
         
-        # print('%s %s' % (values[0], values[1]))#, values[2], values[3], values[4], values[5], values[6], values[7])) 
         # # creates a mxn array to store this information (values x row)
-        for row in values:
-            for email in row:
-                if (email == values):
+        index = 0
+
+        for subRow in values:
+            for row in subRow:
+                if row == email:
                     # Print columns B and I, which correspond to indices 0 and 7.
                     print('%s %s, %s, %s, %s, %s, %s, %s' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])) 
+                    print('%s' % (values[index]));
+                else: 
+                    index += 1
                 
     except HttpError as err:
         print(err)
