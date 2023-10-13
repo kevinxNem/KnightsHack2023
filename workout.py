@@ -2,6 +2,11 @@
 
 import os
 import requests
+import json
+import subprocess
+import time
+
+from googleforms import user_dict 
 
 url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises"
 
@@ -12,11 +17,30 @@ headers = {
     "X-RapidAPI-Host": "exercises-by-api-ninjas.p.rapidapi.com"
 }
 
-response = requests.get(url, headers=headers)
+# Run googleforms.pykevin
+subprocess.run(["python", "googleforms.py"])
 
-# Handle the response
-if response.status_code == 200:
-    print(response.json() )
-else:
-    print(f"Failed to fetch data: {response.status_code}")
+# Optionally, wait for a moment to ensure googleforms.py has finished
+# and data is stored before continuing.
+time.sleep(1)
+
+# Now load the data into workout.py (e.g., from a file or database)
+
+print(user_dict)
+
+#response = requests.get(url, headers=headers)
+querystring = {"muscle":user_dict["muscles"], "type":user_dict["goals"]}
+
+
+try:
+    response = requests.get(url, headers=headers, params=querystring)
+    response.raise_for_status()  # Check if the request was successful
+    parsed_json = response.json()
+    print(json.dumps(parsed_json, indent=4, sort_keys=True))
+except requests.RequestException as e:
+    print(f"HTTP Request failed: {e}")
+except json.JSONDecodeError:
+    print("Failed to decode JSON response")
+except Exception as e:
+    print(f"An error occurred: {e}")
 

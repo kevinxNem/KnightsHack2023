@@ -17,6 +17,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 # SAMPLE_RANGE_NAME: Is the range inside that row of inputs
 SPREADSHEET_ID = '1FxU51lyWODR-tx4Nn4lWnqPEVSyWNamOStpn4_kd6Fo' 
 SAMPLE_RANGE_NAME = 'B:J'
+user_dict = {}
 
 def main():
     """Shows basic usage of the Sheets API.
@@ -65,11 +66,18 @@ def main():
                 tempRow = row
                 
         # Store the user's input into a dictionary for the Fitness API to read 
-        user_dict = {"email": tempRow[0], "name": tempRow[1], "sex": tempRow[2], "age": tempRow[3], "weight": tempRow[4], "height": tempRow[5], "goal": tempRow[6], "strength": tempRow[7], "muscles": tempRow[8]}
+        user_dict = {"email": tempRow[0], "name": tempRow[1], "sex": tempRow[2], "age": tempRow[3], "weight": tempRow[4], "height": tempRow[5], "goals": tempRow[6], "strength": tempRow[7], "muscles": tempRow[8]}
         print(user_dict)
     
     except HttpError as err:
         print(err)
+    
+    return user_dict
+
+
         
 if __name__ == '__main__':
     main()
+    print("\n" + "Heres the dict")
+
+    print(user_dict)
